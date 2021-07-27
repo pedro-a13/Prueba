@@ -1,6 +1,6 @@
 from tkinter import *
 import os
- 
+
 def ventana_inicio():
 	global ventana_principal
 	pestas_color="DarkGrey"
@@ -29,6 +29,10 @@ def buscar():
 	ventana_buscar.geometry("300x250")
 
 def agregar():
+	
+	global nos
+	global codigo1
+	global cantidad
 	global ventana_agregar
 	pestas_color="DarkGrey"
 	ventana_agregar = Toplevel(ventana_principal)
@@ -39,16 +43,29 @@ def agregar():
 	Label(ventana_agregar,text="Codigo").pack()
 	codigo1 = StringVar ()
 	Entry(ventana_agregar,width="24", font = ('Arial',12),textvariable= codigo1).pack()
+	Label(ventana_agregar,text="Cantidad").pack()
+	cantidad = StringVar ()
+	Entry(ventana_agregar,width="24", font = ('Arial',12),textvariable= cantidad).pack()
 	Label(ventana_agregar,text="").pack()
 	Button(ventana_agregar,text="Agregar", height="2", width="30", bg=pestas_color, command = info).pack()
 	ventana_agregar.title("Agregar")
-	ventana_agregar.geometry("300x250")
+	
+	ventana_agregar.geometry("400x250")
 
-def info():
+def info():	
 	nos_info = nos.get()
 	codigo1_info =codigo1.get()
+	cantidad_info =cantidad.get()
 
-	print(nos_info, "\t", codigo1_info)
+	print(nos_info, "\t", codigo1_info, "\t", cantidad_info)
+
+file = open("agregar.txt", "a")
+  file.write(nos_info)
+  file.write("\t")
+  file.write(codigo1_info)
+  file.write("\t")
+  file.write(cantidad_info)
+  file.write("\t")
 
 
 ventana_inicio()
